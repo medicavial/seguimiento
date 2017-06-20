@@ -14,18 +14,16 @@
                 </div>
                 <div class="col s12 m4 l3">
                   <input type="date" class="datepicker" ng-model="datos.fechaFin" placeholder='Fecha inicial'>
-                </div>
+                </div>                
                 <div class="col s12 m4 l3">                  
-                    <select>
-                      <option value="" disabled selected ng-model="datos.unidad">- Selecciona Unidad -</option>
-                      <option value="1">Option 1</option>
-                      <option value="2">Option 2</option>
-                      <option value="3">Option 3</option>
-                    </select>
-                    <label>Materialize Select</label>            
+                    <select ng-model="datos.unidad" material-select>
+                      <option value=""  disabled  >- Selecciona Unidad -</option>
+                      <option ng-repeat="option in listadoUnidades" value="{{option.id}}">{{option.nombre}}</option>
+                    </select>                          
                 </div>
+
                 <div class="col s12 m4 l2" align="right">
-                  <button class="btn cyan waves-effect waves-light right" type="submit" name="action">Buscar
+                  <button  class="btn cyan waves-effect waves-light right " type="submit" name="action">Buscar
                     <i class="mdi-content-send right"></i>
                   </button>
                 </div>
@@ -33,7 +31,60 @@
               </form>
             </div>
             <!--DataTables example-->
-            <div id="table-datatables">
+            <div class="row " ng-show="cargador">
+                <div class="input-field col s12 m12 l12 login-text" align="center">
+                <div class="preloader-wrapper small active">
+                  <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+
+                  <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+
+                  <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+
+                </div>        
+              </div>
+            <div id="table-datatables"  class="animated fadeInDown" ng-show='listadoAutorizaciones'>
               <div class="row">
                 <div class="col s12 m12 12">
                   <table id="data-table-simple" class="responsive-table display" cellspacing="0">
@@ -318,7 +369,13 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-      $('select').material_select();
+      //$('select').material_select();
+
+      setTimeout(function () {
+        $('select').material_select();
+    }, 1000);
+
+
     });
 </script>
 
@@ -335,5 +392,18 @@
                 },100);
             });
         });
+    </script>
+ <script type="text/javascript">
+
+      
+  function testAnim(x) {
+      $('#animationSandbox').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+          $(this).removeClass();
+        });
+      };
+    
+     
+
+
     </script>
 

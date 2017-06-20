@@ -1,6 +1,7 @@
 app.factory("busquedas", function($http, $rootScope, api){
     return{
         buscaAutorizaciones:function(datos){
+
             return $http.get(api+'busqueda/busquedaAutorizaciones');
         },
         buscacliente:function(datos){
@@ -11,6 +12,11 @@ app.factory("busquedas", function($http, $rootScope, api){
         },
         buscariesgo:function(datos){
             return $http.get(api+'busqueda/riesgo');
+
+        },
+         buscaUnidades:function(){
+            return $http.get(api+'busqueda/busquedaUnidades');
+
         }
     }
 });

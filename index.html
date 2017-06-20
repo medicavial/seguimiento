@@ -11,21 +11,18 @@
 
     <!-- CORE CSS-->    
     <link href="template/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
-
     <link href="template/css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
     <!-- Custome CSS-->    
     <link href="template/css/custom/custom.css" type="text/css" rel="stylesheet" media="screen,projection">
-    
-
 
     <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
     <link href="template/js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
     <link href="template/js/plugins/jvectormap/jquery-jvectormap.css" type="text/css" rel="stylesheet" media="screen,projection">
     <link href="template/js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
 
-
      <link href="template/js/plugins/prism/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
       <link href="template/js/plugins/data-tables/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="template/js/plugins/animate-css/animate.css" type="text/css" rel="stylesheet" media="screen,projection">
   <!--[if lt IE 9]>
       <script>
           location.href="http://www.medicavial.net/infoweb/navegadorviejo.html";
@@ -153,7 +150,21 @@
                         </li>
                     </ul>
                 </li>
-                <!--<li class="bold"><a href="app-email.html" class="waves-effect waves-cyan"><i class="mdi-communication-email"></i> Mailbox <span class="new badge">4</span></a>
+                <!-- <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-view-carousel"></i>Autori</a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="layout-fullscreen.html">Full Screen</a>
+                                    </li>
+                                    <li><a href="layout-horizontal-menu.html">Horizontal Menu</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="bold"><a href="app-email.html" class="waves-effect waves-cyan"><i class="mdi-communication-email"></i> Mailbox <span class="new badge">4</span></a>
                 </li>
                 <li class="bold"><a href="app-calendar.html" class="waves-effect waves-cyan"><i class="mdi-editor-insert-invitation"></i> Calender</a>
                 </li>
@@ -453,9 +464,10 @@
     
 
      <script type="text/javascript" src="template/js/plugins/jquery-1.11.2.min.js"></script>    
-    <!--materialize js--
+    <!--materialize js-->
+    <script type="text/javascript" src="template/js/materialize.js"></script>
     <!--scrollbar-->
-
+    
      <script type="text/javascript" src="template/js/plugins/prism/prism.js"></script>
     <!--scrollbar-->
     <script type="text/javascript" src="template/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
@@ -470,21 +482,28 @@
     <!--custom-script.js - Add your own theme custom JS-->
     <script type="text/javascript" src="template/js/custom-script.js"></script>
    
+    <script type="text/javascript">
+    // Toast Notification
+    $(window).load(function() {
+        setTimeout(function() {
+            Materialize.toast('<span>Mensaje de bienvenida</span>', 5000);
+        }, 1000);
+        
+    });
+    </script>
 
 
-   <script src="lib/jquery-3.1.1.min.js"></script> 
-    <script src="lib/angular.min.js"></script>  
-    <script type="text/javascript" src="template/js/materialize.js"></script>
-    <script src="lib/angular-materialize.min.js"></script>  
+   
+    <!-- Toast Notification -->
+    <script src="lib/angular.min.js"></script> 
+    <script type="text/javascript" src="lib/angular-materialize.min.js"></script> 
     <script src="modules/angular-file-upload-shim.min.js" ></script>    
     
     <script src="modules/ng-bootstrap-tpls.min.js"></script>
-
     <script src="modules/angular-animate.min.js"></script>
     <script src="modules/angular-cookies.min.js"></script>
     <script src="modules/angular-route.min.js"></script>
     <script src="modules/angular-file-upload.min.js" ></script>
-
     <script src="app/app.js"></script>
     <script src="app/directives/cargando.js"></script>
     <script src="app/controllers/loginCtrl.js"></script>

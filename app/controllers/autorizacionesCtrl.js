@@ -21,12 +21,25 @@ app.controller('autorizacionesCtrl', function($scope, $rootScope,$upload, busque
         	fechaFin:hoy,
         	unidad:''
         }
+
+       
+        $scope.cargador=false;
+        $scope.listadoUnidades=[];
+        busquedas.buscaUnidades().success(function(data){        	
+			$scope.cargador=false;			
+			$scope.listadoUnidades=data;
+			console.log($scope.listadoUnidades);
+
+		});
     }
 
 	$scope.buscarAutorizaciones = function(){	
 	console.log('entro');	
+	$scope.cargador=true;
 		busquedas.buscaAutorizaciones($scope.datos).success(function(data){
-			console.log(data);
+			$scope.cargador=false;
+			console.log(data);	
+			$scope.listadoAutorizaciones=data;
 		});
 	}
     
