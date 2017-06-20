@@ -1,4 +1,4 @@
-<div ng-init="inicio()" class="container">
+<div ng-init="inicio()" class="container fadeInLeft">
    <!--start container-->
                 <div class="container">
 
@@ -88,3 +88,16 @@
         }, 15000);
     });
     </script>  
+<script type="text/javascript">
+
+      
+  function testAnim(x) {
+      $('#animationSandbox').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+          $(this).removeClass();
+        });
+      };
+    
+     
+
+
+    </script>

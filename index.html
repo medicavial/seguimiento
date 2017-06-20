@@ -25,6 +25,7 @@
 
      <link href="template/js/plugins/prism/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
       <link href="template/js/plugins/data-tables/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="template/js/plugins/animate-css/animate.css" type="text/css" rel="stylesheet" media="screen,projection">
   <!--[if lt IE 9]>
       <script>
           location.href="http://www.medicavial.net/infoweb/navegadorviejo.html";
@@ -452,7 +453,7 @@
     <!--materialize js-->
     <script type="text/javascript" src="template/js/materialize.js"></script>
     <!--scrollbar-->
-
+    
      <script type="text/javascript" src="template/js/plugins/prism/prism.js"></script>
     <!--scrollbar-->
     <script type="text/javascript" src="template/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
@@ -467,11 +468,21 @@
     <!--custom-script.js - Add your own theme custom JS-->
     <script type="text/javascript" src="template/js/custom-script.js"></script>
    
+    <script type="text/javascript">
+    // Toast Notification
+    $(window).load(function() {
+        setTimeout(function() {
+            Materialize.toast('<span>Mensaje de bienvenida</span>', 5000);
+        }, 1000);
+        
+    });
+    </script>
 
 
    
     <!-- Toast Notification -->
-    <script src="lib/angular.min.js"></script>  
+    <script src="lib/angular.min.js"></script> 
+    <script type="text/javascript" src="lib/angular-materialize.min.js"></script> 
     <script src="modules/angular-file-upload-shim.min.js" ></script>    
     
     <script src="modules/ng-bootstrap-tpls.min.js"></script>
