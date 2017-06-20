@@ -1,0 +1,202 @@
+<div ng-init="inicio()" class="container">
+   <!--start container-->
+      <div class="container">
+            <div class="titulos">
+                <a href="#/" class="icon-arrow-left"></a>
+                <h1>Registro Oportunidades</h1>
+            </div>
+
+            <div class="row">
+
+              <div class="input-field col s4">
+                  <select ng-model="datos.cliente" material-select watch>
+                    <option value='' disabled>Cliente</option>
+                    <option ng-repeat="cliente in clientes">{{cliente.nombre}}</option>
+
+                  </select>
+              </div>
+
+              <div class="input-field col s4">
+                <input ng-model="datos.folio" id="last_name" type="text" class="validate" disabled>
+                <label for="last_name">Folio Asignado al Area</label>
+              </div>
+
+              <div class="input-field col s4">
+                     <input type="date" ng-model="datos.fechaReporte" class="datepicker">
+                     <label for="last_name">Fecha Reporte</label>
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="input-field col s3">
+                <input id="last_name" ng-model="datos.poliza" type="text" class="validate">
+                <label for="last_name">Poliza</label>
+              </div>
+
+              <div class="input-field col s3">
+                <input id="last_name" ng-model="datos.inciso" type="text" class="validate">
+                <label for="last_name">Inciso</label>
+              </div>
+
+              <div class="input-field col s3">
+              </div>
+
+              <div class="input-field col s3">
+                <input id="last_name" ng-model="datos.grado" type="text" class="validate">
+                <label for="last_name">Grado</label>
+              </div>
+
+
+            </div>
+
+            <div class="row">
+
+              <div class="input-field col s5">
+                <input id="last_name" ng-model="datos.asegurado" type="text" class="validate">
+                <label for="last_name">Asegurado</label>
+              </div>
+
+              <div class="input-field col s3">
+                <p>
+                  <input type="checkbox" ng-model="datos.notifica" id="test6" checked="checked" />
+                  <label for="test6">Se Notifica al Cliente</label>
+                </p>
+              </div>
+
+
+              <div class="input-field col s4">
+                  <select ng-model="datos.cliente" material-select watch>
+                    <option value='' disabled>Tipo</option>
+                    <option ng-repeat="cliente in clientes">{{cliente.nombre}}</option>
+
+                  </select>
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="input-field col s6">
+                  <select>
+                    <option value="" selected>Seleecione Unidad</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                  </select>
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="input-field col s6">
+                <input id="last_name" ng-model="datos.folioMV" type="text" class="validate">
+                <label for="last_name">Folio MV</label>
+              </div>
+
+            </div>
+      <legend><h5>Datos del Lesionado</h5></legend>
+
+      <div class="row">
+
+            <div class="input-field col s10">
+              <input id="last_name" ng-model="datos.lesionado" type="text" class="validate">
+              <label for="last_name">Nombre</label>
+            </div>
+
+            <div class="input-field col s2">
+              <input id="last_name" ng-model="datos.edad" type="text" class="validate">
+              <label for="last_name">Edad</label>
+            </div>
+      </div>
+
+      <div class="row">
+
+        <div class="input-field col s12">
+          <textarea id="textarea1" ng-model="datos.domicilio" class="materialize-textarea"></textarea>
+          <label for="textarea1">Domicilio o Telefono</label>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+          <div class="input-field col s4">
+              <select ng-model="datos.riesgo" id="selectriesgo">
+                <option value="" selected>Riesgo</option>
+                <option ng-repeat="riesgo in riesgos" >{{riesgo.nombre}}</option>
+              </select>
+          </div>
+
+          <div class="input-field col s4">
+              <select ng-model="datos.posicion">
+                <option value="" selected>Posición</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+          </div>
+
+      </div>
+
+      <div class="row">
+
+          <div class="input-field col s6">
+              <select ng-model="datos.reporte">
+                <option value="" selected>Recepcion de Reporte</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+          </div>
+
+          <div class="input-field col s6">
+              <input id="last_name" ng-model="datos.medicoTratante" type="text" class="validate">
+              <label for="last_name">Médico Tratante</label>
+          </div>
+
+
+      </div>
+
+      <div class="row">
+
+        <div class="input-field col s12">
+          <textarea id="textarea1" ng-model="datos.motivo" class="materialize-textarea"></textarea>
+          <label for="textarea1">Motivo</label>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="input-field col s12">
+          <textarea id="textarea1" ng-model="datos.observaciones" class="materialize-textarea"></textarea>
+          <label for="textarea1">Observaciones</label>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+          <div class="input-field col s8">
+              <input id="last_name" ng-model="datos.nombreReporta" type="text" class="validate">
+              <label for="last_name">Nombre de quien Reporta</label>
+          </div>
+
+      </div>
+
+      <div class="row">
+
+          <button class="btn waves-effect waves-light" type="submit" name="action">Guardar
+            <i class="material-icons right"></i>
+          </button>
+
+
+
+      </div>
+
+      </div><br><br>
+
+</div>

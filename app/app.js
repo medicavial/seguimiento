@@ -1,5 +1,5 @@
 //inicializamos la aplicacion
-var app = angular.module('app', ['ui.bootstrap', 'ngCookies','ngRoute','ngAnimate','angularFileUpload']);
+var app = angular.module('app', ['ui.materialize', 'ngCookies','ngRoute','ngAnimate','angularFileUpload']);
 
 //configuramos nuestra aplicacion
 app.config(function($routeProvider){
@@ -18,10 +18,28 @@ app.config(function($routeProvider){
             templateUrl: 'views/autorizaciones.html',
             controller : 'autorizacionesCtrl'
     });
+
+    $routeProvider.when('/areaOportunidades',{
+            templateUrl: 'views/areaOportunidades.html',
+            controller : 'areaOportunidadesCtrl'
+    });
+
+    $routeProvider.when('/registroOportunidades',{
+            templateUrl: 'views/registroOportunidades.html',
+            controller : 'registroOportunidadesCtrl'
+    });
+
+
+    $routeProvider.when('/seguimientoOportunidades',{
+            templateUrl: 'views/seguimientoOportunidades.html'
+            // controller : 'seguimientoOportunidadesCtrl'
+    });
     
     $routeProvider.otherwise({redirectTo:'/login'});
 
 });
+
+app.constant('api','http://localhost/apiseg/public/api/')
 
 
 //sirve para ejecutar cualquier cosa cuando inicia la aplicacion
@@ -99,14 +117,14 @@ app.run(function ($rootScope ,$cookies, $cookieStore, sesion, $location){
 
 
 //servicio que verifica sesiones de usuario
-app.factory("sesion", function($cookies,$cookieStore,$location, $rootScope, $http)
+app.factory("sesion", function($cookies,$cookieStore,$location, $rootScope, $http,api)
 {
     return{
         login : function(username, password)
         {  
             $rootScope.cargador=true; 
             $http({
-                url:'http://172.17.10.58/apiseg/public/api/busqueda/login',
+                url:api+'busqueda/login',
                 method:'POST', 
                 contentType: 'application/json', 
                 dataType: "json", 

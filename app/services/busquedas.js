@@ -1,7 +1,16 @@
-app.factory("busquedas", function($http, $rootScope){
+app.factory("busquedas", function($http, $rootScope, api){
     return{
         buscaAutorizaciones:function(datos){
-            return $http.get('http://172.17.10.58/apiseg/public/api/busqueda/busquedaAutorizaciones');
+            return $http.get(api+'busqueda/busquedaAutorizaciones');
+        },
+        buscacliente:function(datos){
+            return $http.get(api+'busqueda/cliente');
+        },
+        buscaposicion:function(datos){
+            return $http.get(api+'busqueda/posicion');
+        },
+        buscariesgo:function(datos){
+            return $http.get(api+'busqueda/riesgo');
         }
     }
 });
