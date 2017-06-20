@@ -1,5 +1,10 @@
-app.controller('autorizacionesCtrl', function($scope, $rootScope,$upload, busquedas) {
+app.controller('autorizacionesCtrl', function($scope, $rootScope,$upload, busquedas, datos) {
     
+	
+
+	$scope.listadoUnidades=datos[0].data;
+	console.log($scope.listadoUnidades);
+
     $scope.inicio = function(){
 
        	var hoy = new Date();
@@ -24,14 +29,11 @@ app.controller('autorizacionesCtrl', function($scope, $rootScope,$upload, busque
 
        
         $scope.cargador=false;
-        $scope.listadoUnidades=[];
-        busquedas.buscaUnidades().success(function(data){        	
-			$scope.cargador=false;			
-			$scope.listadoUnidades=data;
-			console.log($scope.listadoUnidades);
-
-		});
+                
+			
     }
+
+
 
 	$scope.buscarAutorizaciones = function(){	
 	console.log('entro');	
@@ -44,6 +46,7 @@ app.controller('autorizacionesCtrl', function($scope, $rootScope,$upload, busque
 	}
     
 });
+
 
 
 ///estructura de controlador

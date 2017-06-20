@@ -397,7 +397,12 @@
 
                 <div  ng-class="{'main':username,'':!username}" >
                   <div class="contenedor" >
-                    <div ng-view class="paginas"></div>  
+                    <div ng-view class="paginas"></div> 
+                     <div id="loader-wrapper" ng-show="cerrar=false">
+                        <div id="loader"></div>        
+                        <div class="loader-section section-left"></div>
+                        <div class="loader-section section-right"></div>
+                    </div> 
                   </div>
                 </div>  
 

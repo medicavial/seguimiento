@@ -16,7 +16,21 @@ app.config(function($routeProvider){
     });
     $routeProvider.when('/autorizaciones',{
             templateUrl: 'views/autorizaciones.html',
-            controller : 'autorizacionesCtrl'
+            controller : 'autorizacionesCtrl',
+            resolve : {
+                datos : function(busquedas,$q){
+                    var promesa         = $q.defer(),
+                        unidad          = busquedas.buscaUnidades();
+
+                    $q.all([unidad]).then(function (data){
+                        promesa.resolve(data);
+                    },function (error){
+                        promesa.reject('Error');
+                    });
+
+                    return promesa.promise;
+                }
+            }
     });
 
     $routeProvider.when('/areaOportunidades',{
