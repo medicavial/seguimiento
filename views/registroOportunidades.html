@@ -200,3 +200,18 @@
       </div><br><br>
 
 </div>
+<script type="text/javascript">
+     $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year
+        format: 'dd/mm/yyyy'    
+      });     
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+      //$('select').material_select();
+      setTimeout(function () {
+        $('select').material_select();
+    }, 100);
+    });
+</script>

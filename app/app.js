@@ -40,7 +40,21 @@ app.config(function($routeProvider){
 
     $routeProvider.when('/registroOportunidades',{
             templateUrl: 'views/registroOportunidades.html',
-            controller : 'registroOportunidadesCtrl'
+            controller : 'registroOportunidadesCtrl',
+            resolve : {
+                datos : function(busquedas,$q){
+                    var promesa         = $q.defer(),
+                        cliente         = busquedas.buscacliente(),
+                        // Posicion        = busquedas.buscaposicion();
+                        Riesgo          = busquedas.buscariesgo();
+                    $q.all([cliente,Riesgo]).then(function (data){
+                        promesa.resolve(data);
+                    },function (error){
+                        promesa.reject('Error');
+                    });                   
+                    return promesa.promise;
+                }
+            }
     });
 
 
