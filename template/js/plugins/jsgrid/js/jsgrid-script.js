@@ -20,7 +20,7 @@ $(function() {
                 height: "70%",
                 width: "100%",
                 filtering: true,
-                editing: true,
+                editing: false,
                 sorting: true,
                 paging: true,
                 autoload: true,
