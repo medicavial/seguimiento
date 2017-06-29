@@ -14,8 +14,12 @@ app.factory("busquedas", function($http, $rootScope, api){
             return $http.get(api+'busqueda/riesgo');
 
         },
-         buscaUnidades:function(){
+        buscaUnidades:function(){
             return $http.get(api+'busqueda/busquedaUnidades');
+
+        },
+        buscatipoDifusion:function(){
+            return $http.get(api+'busqueda/buscatipoDifusion');
 
         }
     }

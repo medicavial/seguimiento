@@ -45,9 +45,11 @@ app.config(function($routeProvider){
                 datos : function(busquedas,$q){
                     var promesa         = $q.defer(),
                         cliente         = busquedas.buscacliente(),
-                        // Posicion        = busquedas.buscaposicion();
+                        Posicion        = busquedas.buscaposicion();
                         Riesgo          = busquedas.buscariesgo();
-                    $q.all([cliente,Riesgo]).then(function (data){
+                        Tipo            = busquedas.buscatipoDifusion();
+                        Unidades        = busquedas.buscaUnidades();
+                    $q.all([cliente,Riesgo,Posicion, Unidades,Tipo]).then(function (data){
                         promesa.resolve(data);
                     },function (error){
                         promesa.reject('Error');
@@ -126,6 +128,7 @@ app.run(function ($rootScope ,$cookies, $cookieStore, sesion, $location){
 
         $rootScope.cerrar = false;
         $rootScope.username =  $cookies.username;
+        $rootScope.usulogin = $cookies.usulogin;
 
         sesion.checkStatus();
 
@@ -140,6 +143,7 @@ app.run(function ($rootScope ,$cookies, $cookieStore, sesion, $location){
 
     //generamos al rootscope las variables que tenemos en las cookies para no perder la sesion 
     $rootScope.username =  $cookies.username;
+    $rootScope.usulogin = $cookies.usulogin;
 
 });
 
@@ -166,6 +170,8 @@ app.factory("sesion", function($cookies,$cookieStore,$location, $rootScope, $htt
                     $rootScope.mensaje = '';
                     $rootScope.username = data[0].Usu_nombre;
                     $cookies.username = data[0].Usu_nombre;
+                    $rootScope.usulogin = data[0].Usu_login;
+                    $cookies.usulogin = data[0].Usu_login;
                     $location.path("/home");
                     //console.log(data);
                 }

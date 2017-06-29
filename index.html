@@ -7,10 +7,11 @@
   
  
     <!-- For Windows Phone -->
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- CORE CSS-->    
     <link href="template/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+
     <link href="template/css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
     <!-- Custome CSS-->    
     <link href="template/css/custom/custom.css" type="text/css" rel="stylesheet" media="screen,projection">
@@ -23,6 +24,10 @@
      <link href="template/js/plugins/prism/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
       <link href="template/js/plugins/data-tables/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" media="screen,projection">
     <link href="template/js/plugins/animate-css/animate.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="lib/jsgrid-theme.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+    <link href="lib/jsgrid.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+
   <!--[if lt IE 9]>
       <script>
           location.href="http://www.medicavial.net/infoweb/navegadorviejo.html";
@@ -480,12 +485,14 @@
     <script type="text/javascript" src="template/js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="template/js/plugins/data-tables/data-tables-script.js"></script>
     <!-- chartist -->
-    <script type="text/javascript" src="template/js/plugins/chartist-js/chartist.min.js"></script>   
+ 
     
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="template/js/plugins.js"></script>
     <!--custom-script.js - Add your own theme custom JS-->
     <script type="text/javascript" src="template/js/custom-script.js"></script>
+    <script type="text/javascript" src="lib/jsgrid.min.js"></script>
+   <!-- <script type="text/javascript" src="template/js/plugins/chartist-js/chartist.min.js"></script> --> 
    
     <script type="text/javascript">
     // Toast Notification
@@ -511,6 +518,7 @@
     <script src="modules/angular-file-upload.min.js" ></script>
     <script src="app/app.js"></script>
     <script src="app/directives/cargando.js"></script>
+    <script src="app/directives/directivasMv.js"></script>
     <script src="app/controllers/loginCtrl.js"></script>
     <script src="app/controllers/homeCtrl.js"></script>
     <script src="app/controllers/autorizacionesCtrl.js"></script>
