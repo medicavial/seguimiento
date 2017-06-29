@@ -1,8 +1,24 @@
 //inicializamos la aplicacion
-var app = angular.module('app', ['ui.materialize', 'ngCookies','ngRoute','ngAnimate','angularFileUpload']);
+var app = angular.module('app', ['ui.materialize', 'ngCookies','ngRoute','ngAnimate','angularFileUpload','ngjsgrid']);
 
 //configuramos nuestra aplicacion
 app.config(function($routeProvider){
+
+   var hoy = new Date();
+        var dd = hoy.getDate();
+        var mm = hoy.getMonth()+1; //hoy es 0!
+        var yyyy = hoy.getFullYear();
+
+        if(dd<10) {
+            dd='0'+dd
+        } 
+
+        if(mm<10) {
+            mm='0'+mm
+        } 
+
+        hoy =yyyy+'-'+mm+'-'+dd;
+
 
     //Configuramos la ruta que queremos el html que le toca y que controlador usara
     $routeProvider.when('/home',{
@@ -20,9 +36,10 @@ app.config(function($routeProvider){
             resolve : {
                 datos : function(busquedas,$q){
                     var promesa         = $q.defer(),
-                        unidad          = busquedas.buscaUnidades();
-
-                    $q.all([unidad]).then(function (data){
+                        unidad          = busquedas.buscaUnidades(),
+                        autMV           = busquedas.buscaAutMV(hoy,hoy),
+                        autZima         = busquedas.buscaAutZima();
+                    $q.all([unidad,autMV,autZima]).then(function (data){
                         promesa.resolve(data);
                     },function (error){
                         promesa.reject('Error');

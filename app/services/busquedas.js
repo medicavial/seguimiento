@@ -12,11 +12,15 @@ app.factory("busquedas", function($http, $rootScope, api){
         },
         buscariesgo:function(datos){
             return $http.get(api+'busqueda/riesgo');
-
         },
-         buscaUnidades:function(){
+        buscaUnidades:function(){
             return $http.get(api+'busqueda/busquedaUnidades');
-
+        },
+        buscaAutMV:function(fechaIni,fechaFin){
+            return $http.get(api+'busqueda/busquedaAutMV/'+fechaIni+'/'+fechaFin);
+        },
+        buscaAutZima:function(){
+            return $http.get(api+'busqueda/busquedaAutZima');
         }
     }
 });
