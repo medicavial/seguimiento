@@ -72,7 +72,21 @@ app.config(function($routeProvider){
 
     $routeProvider.when('/areaOportunidades',{
             templateUrl: 'views/areaOportunidades.html',
-            controller : 'areaOportunidadesCtrl'
+            controller : 'areaOportunidadesCtrl',
+            resolve : {
+                datos : function(busquedas,$q){
+                    var promesa         = $q.defer(),
+                        unidad          = busquedas.buscaUnidades(),
+                        listado         = busquedas.listadoOportunidades();
+                    $q.all([unidad,listado]).then(function (data){
+                        promesa.resolve(data);
+                    },function (error){
+                        promesa.reject('Error');
+                    });
+
+                    return promesa.promise;
+                }
+            }
     });
 
     $routeProvider.when('/registroOportunidades',{
@@ -82,9 +96,9 @@ app.config(function($routeProvider){
                 datos : function(busquedas,$q){
                     var promesa         = $q.defer(),
                         cliente         = busquedas.buscacliente(),
-                        Posicion        = busquedas.buscaposicion();
-                        Riesgo          = busquedas.buscariesgo();
-                        Tipo            = busquedas.buscatipoDifusion();
+                        Posicion        = busquedas.buscaposicion(),
+                        Riesgo          = busquedas.buscariesgo(),
+                        Tipo            = busquedas.buscatipoDifusion(),
                         Unidades        = busquedas.buscaUnidades();
                     $q.all([cliente,Riesgo,Posicion, Unidades,Tipo]).then(function (data){
                         promesa.resolve(data);

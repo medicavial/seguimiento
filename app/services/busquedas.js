@@ -28,6 +28,25 @@ app.factory("busquedas", function($http, $rootScope, api){
         },
         buscaDetalleAutorizacion:function(aut, tipo){
             return $http.get(api+'busqueda/buscaDetalleAutorizacion/'+aut+'/'+tipo);
+        },
+        listadoOportunidades:function(){
+            return $http.get(api+'busqueda/listadoOportunidades');
+
+        },
+        buscaOportunidades:function(datos){
+
+            return $http.post(api+'busqueda/buscaOportunidades', datos);
+
+        },
+        detalleOportunidad:function(folio){
+
+            return $http.post(api+'busqueda/detalleOportunidad/'+folio);
+
+        },
+        cerrarAP:function(folio){
+
+            return $http.post(api+'busqueda/cerrarAP/'+folio);
         }
+
     }
 });
