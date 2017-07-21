@@ -5,30 +5,112 @@
     	<p class="caption"  ><h4 class="header  " ng-hide="verDetalle">Listado de Autorizaciones.</h4></p>
             <div class="divider"></div>
             <div id="input-date-picker" class="section  "  ng-hide="verDetalle">
-              <h6 class="header">Rango de fechas</h6>
-              <form ng-submit="buscarAutorizaciones()">
-              <div class="row">
-                
-                <div class="col s12 m4 l3">
-                  <input type="date" class="datepicker"  ng-model="datos.fechaIni" placeholder='Fecha inicial'>
-                </div>
-                <div class="col s12 m4 l3">
-                  <input type="date" class="datepicker" ng-model="datos.fechaFin" placeholder='Fecha inicial'>
-                </div>                
-                <div class="col s12 m4 l3">                  
-                    <select ng-model="datos.unidad" material-select>
-                      <option value=""  disabled  >- Selecciona Unidad -</option>
-                      <option ng-repeat="option in listadoUnidades" value="{{option.id}}">{{option.nombre}}</option>
-                    </select>                          
-                </div>
+             
 
-                <div class="col s12 m4 l2" align="right">
-                  <button  class="btn cyan waves-effect waves-light right " type="submit" name="action">Buscar
-                    <i class="mdi-content-send right"></i>
-                  </button>
+
+
+              <div class="col s12 m8 l9">
+                <ul class="collapsible collapsible-accordion" data-collapsible="accordion">
+                  <li>
+                    <div class="collapsible-header">Búsqueda</div>
+                    <div class="collapsible-body">
+                      
+              <div class="row">
+                <div class="col s12 m12 l12">
+                <div class="row">
+                  <div class="col s12">
+                    <ul class="tabs tab-demo z-depth-1 cyan" tabs reload="allTabContentLoaded">
+                      <li class="tab col s3"><a class=" active white-text waves-effect waves-light " href="#sapien">Por fechas</a>
+                      </li>
+                      <li class="tab col s3"><a class="white-text waves-effect waves-light" href="#activeone">Por lesionado</a>
+                      </li>
+                      <li class="tab col s3"><a class="white-text waves-effect waves-light" href="#vestibulum">Avanzada</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col s12">
+                    <div id="sapien" class="col s12  cyan lighten-4">
+                      <form ng-submit="buscarAutorizaciones()">
+                        <br>
+                        <div class="row">                          
+                          <div class="col s12 m4 l3">
+                            <input type="date" class="datepicker"  ng-model="datos.fechaIni" placeholder='Fecha inicial'>
+                          </div>
+                          <div class="col s12 m4 l3">
+                            <input type="date" class="datepicker" ng-model="datos.fechaFin" placeholder='Fecha inicial'>
+                          </div>                
+                          <div class="col s12 m4 l3">                  
+                              <select ng-model="datos.unidad" material-select>
+                                <option value=""  disabled  >- Selecciona Unidad -</option>
+                                <option ng-repeat="option in listadoUnidades" value="{{option.id}}">{{option.nombre}}</option>
+                              </select>                          
+                          </div>
+
+                          <div class="col s12 m4 l2" align="right">
+                            <button  class="btn cyan waves-effect waves-light right " type="submit" name="action">Buscar
+                              <i class="mdi-content-send right"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <br>
+                      </form>
+
+                    </div>
+                    <div id="activeone" class="col s12  cyan lighten-4">
+                      <form ng-submit="buscarAutorizaciones()">                        
+                        <div class="row">                          
+                          <div class="col s12 m10 l9 input-field">                            
+                            <input id="name"  ng-model="datos.lesionado" type="text">
+                            <label for="first_name">Lesionado</label>                          
+                          </div>                          
+                          <div class="col s12 m2 l3" style="padding-top: 1.5em;">
+                            <button  class="btn cyan waves-effect waves-light left " type="submit" name="action">Buscar
+                              <i class="mdi-content-send right"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <br>
+                      </form>
+                    </div>
+                    <div id="vestibulum" class="col s12  cyan lighten-4">
+                      <form ng-submit="buscarAutorizaciones()">                       
+                        <div class="row">                          
+                          <div class="col s12 m3 l3 input-field">                            
+                            <input id="name"  ng-model="datos.folio" type="text">
+                            <label for="first_name">Folio</label>                          
+                          </div>
+                          <div class="col s12 m3 l3 input-field">                            
+                            <input id="name"  ng-model="datos.autorizacion" type="text">
+                            <label for="first_name">Autorización</label>                          
+                          </div>  
+                          <div class="col s12 m3 l3 input-field">                            
+                            <input id="name"  ng-model="datos.movimiento" type="text">
+                            <label for="first_name">Movimiento</label>                          
+                          </div>  
+
+                          <div class="col s12 m4 l2" align="right" style="padding-top: 1.5em;">
+                            <button  class="btn cyan waves-effect waves-light left " type="submit" name="action">Buscar
+                              <i class="mdi-content-send right"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <br>
+                      </form>
+                    </div>
+                  </div>
                 </div>
               </div>
-              </form>
+              </div>
+                    </div>
+                  </li>                  
+                </ul>
+              </div>
+
+
+
+
+
+              
             </div>
             <!--DataTables example-->
             <div class="row "  ng-show="cargador">
@@ -86,13 +168,310 @@
               </div>
             <div id="mianimacion" class="row" ng-hide="verDetalle">
               <div class="col s12 m12 l12">
-                <div ng-jsgrid="gridConfig"></div>
+                <div class="responsive-table" id="grid" ng-jsgrid="gridConfig"></div>
               </div>              
             </div>
-            <div class="row  " ng-show="verDetalle">
-                <div class="col s12 m12 l12">
-                <a class="btn-floating btn-large waves-effect waves-light red" ng-click="regresarListado()"><i class="mdi-navigation-arrow-back"></i></a>
-                <h1>CONTENIDO DE LA AUTORIZACION</h1>
+            <div id="prueba1" class="row  " ng-show="verDetalle">
+                <div class="row "  ng-show="cargadorContendor" align="center" style="padding-top: 10em; padding-bottom: 10em">
+                    <div class="preloader-wrapper big active"  >
+                      <div class="spinner-layer spinner-blue">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+
+                      <div class="spinner-layer spinner-red">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+
+                      <div class="spinner-layer spinner-yellow">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+
+                      <div class="spinner-layer spinner-green">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+
+                    </div>        
+                  </div>
+                <div class="col s12 m12 l12" ng-hide="cargadorContendor">
+                
+                <br>             
+                <div style="padding: 5px 5px 5px 5px;font-size: 16px">                
+                <ul id="task-card" class="collection with-header">
+                    <li class="collection-header cyan">
+                    
+                    <div class="row">
+                      <div class="col s12 m1 l1">
+                          <a class="btn-floating btn-large waves-effect waves-light blue" ng-click="regresarListado()"><i class="mdi-navigation-arrow-back"></i></a>
+                      </div>
+                      <div class="col s12 m8 l8">
+                          <h4 class="task-card-title">DETALLE DE LA AUTORIZACIÓN</h4>
+                          <p class="task-card-date">Fecha registro: {{detalleAut.fecreg}}</p>
+                      </div>
+                      <div class="col s12 m3 l3" align="right">
+                          <h5 class="task-card-title">Tipo: {{detalleAut.tipo}}</h5>
+                      </div>
+                    </div>                     
+                    </li>
+                    <li class="collection-item dismissable">
+
+                       <div class="row">
+                         <div class="col s12 m4 l4">
+                            <p  class="" ><i tooltipped class="mdi-action-perm-identity small tooltipped" data-position="right" data-delay="50" data-tooltip="Lesionado"></i> {{detalleAut.nombre}} </p> 
+                            <p><i tooltipped class="mdi-file-folder-shared small" data-position="right" data-delay="50" data-tooltip="Folio"></i> {{detalleAut.folio}}</p>
+                            <p><i tooltipped class="mdi-communication-vpn-key small" data-position="right" data-delay="50" data-tooltip="Autorizacion"></i> {{detalleAut.aut}}</p>
+                            <p><i tooltipped class="mdi-maps-directions-walk small" data-position="right" data-delay="50" data-tooltip="Movimiento"></i> {{detalleAut.movimiento}}</p>
+                            <p><i tooltipped class="mdi-editor-attach-money small" data-position="right" data-delay="50" data-tooltip="Estimación"></i> {{detalleAut.estimacion | currency}}</p>
+                         </div>
+                         <div class="col s12 m5 l5">                           
+                            <p><i tooltipped class="mdi-communication-phone small" data-position="right" data-delay="50" data-tooltip="Teléfono"></i> {{detalleAut.tel}} </p> 
+                            <p><i tooltipped class="mdi-action-home small" data-position="right" data-delay="50" data-tooltip="Unidad"></i> {{detalleAut.unidad}}</p>
+                            <p><i tooltipped class="mdi-image-edit small" data-position="right" data-delay="50" data-tooltip="Diagnóstico"></i> {{detalleAut.diag}}</p>
+                            <p><i tooltipped class="mdi-notification-event-note small
+" data-position="right" data-delay="50" data-tooltip="Descripción"></i> {{detalleAut.obs}}</p>
+                         </div>
+                         <div class="col s12 m3 l3" align="right">
+                            <div style="width: 100%" ><img style="padding-right: 3%" src="imgs/logostmp/{{detalleAut.ciacve}}.jpg" width="150" alt="English" /><img width="60" src="imgs/producto/{{detalleAut.img}}"  alt="English" /></div>                           
+                         </div>
+                       </div>               
+                    </li>                    
+                  </ul>                
+                </div>
+                <div class="row">
+                  <div class="col s12 m12 l12 ">
+                      <a class="btn-floating btn-large waves-effect waves-light right btn modal-trigger"  href="#modal1" open="openModal" ng-click="abrirModal()"><i class="mdi-content-add"></i></a>                      
+                  </div>
+                </div>
+                <div id="modal1" class="modal bottom-sheet">
+                    <div class="modal-content" style="width: 100%">
+                        
+                        <div class="col s12 m12 l12" ng-show="detalleAut.cveMovimiento==4">
+                          <div class="card-panel">
+                            <div class="row">
+                              <div class="col s12 m6 l6" ng-hide="cargadorcita">
+                                  <h4 class="header2"> Agendar Cita</h4> 
+                              </div>
+                              <div class="col s12 m6 l6" ng-hide="cargadorcita">
+                                  <h4 class="header2" align="right">{{detalleAut.nombre}} - {{detalleAut.folio}}</h4> 
+                              </div>
+                            </div>                                                      
+                              <form ng-submit="guardarCita()" >
+                                <div class="row" ng-hide="cargadorcita">
+                                  <div class="input-field col s12 m3 l3">                                    
+                                    <input type="date" class="datepicker"  ng-model="citaAut.fecha" required>
+                                    <label for="first_name">Fecha de Cita</label>
+                                  </div>                                
+                                  <div class="input-field col s12 m3 l3">                                    
+                                    <input id="timepicker" data-default="14:20:00" class="timepicker" type="time"  ng-model="citaAut.hora" required>
+                                    <label for="email">Hora de Cita</label>
+                                  </div>
+                                  <div class="input-field col s12 m3 l3">                                    
+                                    <textarea id="message4" class="materialize-textarea validate" ng-model="citaAut.referencia" length="100" required></textarea>
+                                    <label for="message">Referencia</label>
+                                  </div>
+                                  <div class="input-field col s12 m3 l3">                                    
+                                    <textarea id="message4" class="materialize-textarea validate" ng-model="citaAut.notas" length="100" required></textarea>
+                                    <label for="message">Notas</label>
+                                  </div>
+                                </div>                                                                                          
+                                <div class="row" ng-hide="cargadorcita">
+                                  <div class="input-field col s12 m3 l3">                                    
+                                    <input type="text"   ng-model="citaAut.proveedor" required>
+                                    <label for="first_name">Proveedor</label>
+                                  </div>
+                                  <div class="input-field col s12 m3 l3">                                    
+                                    <input type="text"   ng-model="citaAut.confirmadoPro" required>
+                                    <label for="first_name">Confimado por (proveedor)</label>
+                                  </div>
+                                  <div class="input-field col s12 m3 l3">                                    
+                                    <input type="text"   ng-model="citaAut.confirmadoLes" required>
+                                    <label for="first_name">Confirmado por (Lesionado)</label>
+                                  </div>
+                                  <div class="input-field col s12 m3 l3">
+                                    <button class="btn cyan waves-effect waves-light right" type="submit" name="action">Guardar
+                                      <i class="mdi-content-send right"></i>
+                                    </button>
+                                  </div>
+                                </div>
+                                </form>   
+                                <div class="row" ng-show="cargadorcita" align="center">
+                                   <div class="input-field col s12 m12 l12">
+                                      <div class="preloader-wrapper big active"  >
+                                        <div class="spinner-layer spinner-blue">
+                                          <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                          </div>
+                                          <div class="gap-patch">
+                                            <div class="circle"></div>
+                                          </div>
+                                          <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                          </div>
+                                        </div>
+
+                                        <div class="spinner-layer spinner-red">
+                                          <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                          </div>
+                                          <div class="gap-patch">
+                                            <div class="circle"></div>
+                                          </div>
+                                          <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                          </div>
+                                        </div>
+
+                                        <div class="spinner-layer spinner-yellow">
+                                          <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                          </div>
+                                          <div class="gap-patch">
+                                            <div class="circle"></div>
+                                          </div>
+                                          <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                          </div>
+                                        </div>
+
+                                        <div class="spinner-layer spinner-green">
+                                          <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                          </div>
+                                          <div class="gap-patch">
+                                            <div class="circle"></div>
+                                          </div>
+                                          <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                          </div>
+                                        </div>
+                                   </div>
+                                </div>                            
+                                                    
+                          </div>
+                        </div>
+                    </div>  
+
+                     <div class="col s12 m12 l12" ng-hide="detalleAut.cveMovimiento==4">
+                          <div class="card-panel">
+                            <div class="row">
+                              <div class="col s12 m6 l6" ng-hide="cargadorcita">
+                                  <h4 class="header2">Subir Soportes</h4> 
+                              </div>
+                              <div class="col s12 m6 l6" ng-hide="cargadorcita">
+                                  <h4 class="header2" align="right">{{detalleAut.nombre}} - {{detalleAut.folio}}</h4> 
+                              </div>
+                            </div>                                                      
+                              <form ng-submit="guardarSoporte()" name="myForm" id="myForm">
+                                <div class="row" ng-hide="cargadorcita">
+                                  <div class="input-field col s12 m4 l4">                                    
+                                    <div class="col s12 m12 l12">
+                                        <input type="file" id="input-file-now" name="file" uploader-model="file" id="archivo"  class="dropify" data-default-file="" onchange="angular.element(this).scope().getFileDetails(this)" multiple />
+                                    </div>
+                                  </div>
+                                  <div class="input-field col s12 m34 l4">                                    
+                                    <div class="col s12 m12 l12">
+                                        <textarea id="message4" class="materialize-textarea validate" ng-model="soporte.obs" style="width: 100%" required></textarea>
+                                        <label for="message">Observaciones</label>
+                                    </div>
+                                  </div>
+                                  <div class="input-field col s12 m4 l4">                                    
+                                    <div class="col s12 m12 l12">
+                                        <button class="btn cyan waves-effect waves-light right" type="submit" name="action">Guardar
+                                          <i class="mdi-content-send right"></i>
+                                        </button>
+                                    </div>
+                                  </div>
+                                </div>                                                                                          
+                                
+                                </form>   
+                                <div class="row" ng-show="cargadorcita" align="center">
+                                   <div class="input-field col s12 m12 l12">
+                                      <div class="preloader-wrapper big active"  >
+                                        <div class="spinner-layer spinner-blue">
+                                          <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                          </div>
+                                          <div class="gap-patch">
+                                            <div class="circle"></div>
+                                          </div>
+                                          <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                          </div>
+                                        </div>
+
+                                        <div class="spinner-layer spinner-red">
+                                          <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                          </div>
+                                          <div class="gap-patch">
+                                            <div class="circle"></div>
+                                          </div>
+                                          <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                          </div>
+                                        </div>
+
+                                        <div class="spinner-layer spinner-yellow">
+                                          <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                          </div>
+                                          <div class="gap-patch">
+                                            <div class="circle"></div>
+                                          </div>
+                                          <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                          </div>
+                                        </div>
+
+                                        <div class="spinner-layer spinner-green">
+                                          <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                          </div>
+                                          <div class="gap-patch">
+                                            <div class="circle"></div>
+                                          </div>
+                                          <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                          </div>
+                                        </div>
+                                   </div>
+                                </div>                            
+                                                    
+                          </div>
+                        </div>
+                    </div>                  
+                </div>
                 </div>
             </div>  
          
@@ -111,20 +490,20 @@
      $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 15, // Creates a dropdown of 15 years to control year
-        format: 'dd/mm/yyyy'    
+        format: 'yyyy-mm-dd'    
       });
+     
 
      
 </script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-      //$('select').material_select();
-      setTimeout(function () {
-        $('select').material_select();
-    }, 1000);
-
-
+    $('.timepicker').pickatime({
+        default: 'now',
+        twelvehour: false, // change to 12 hour AM/PM clock from 24 hour
+        donetext: 'OK',
+      autoclose: false,
+      vibrate: true // vibrate the device when dragging clock hand
     });
 </script>
 
@@ -150,7 +529,37 @@
       };
 </script>
 <script type="text/javascript">      
- 
+   $('.modal-trigger').leanModal();
 </script>
 
+<script type="text/javascript">
+        $(document).ready(function(){
+            // Basic
+            $('.dropify').dropify();
+
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove:  'Supprimer',
+                    error:   'Désolé, le fichier trop volumineux'
+                }
+            });
+
+            // Used events
+            var drEvent = $('.dropify-event').dropify();
+
+            drEvent.on('dropify.beforeClear', function(event, element){
+                return confirm("Do you really want to delete \"" + element.filename + "\" ?");
+            });
+
+            drEvent.on('dropify.afterClear', function(event, element){
+                alert('File deleted');
+            });
+        });
+    </script>
+
+
+<!-- GILBERTO CABRAL VALTIERRA -->
 

@@ -1,6 +1,7 @@
 app.controller('loginCtrl', function($scope, $rootScope, sesion) {
 
     $scope.inicio = function(){
+    	$rootScope.cargadorInicio =false;
 
         $scope.user = '';
         $scope.psw = '';

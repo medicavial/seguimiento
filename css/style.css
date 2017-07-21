@@ -330,6 +330,23 @@ h1{
 
 }
 
+.picker__box{
+    background-color: #CCC;
+}
+
+.modal { width: 75% !important ; max-height: 100% !important }
+
+.cargadorCentrado {
+     position: absolute;
+     left: 50%;
+     top: 50%;
+     -moz-transform: translate(-50%, -50%)
+     -webkit-transform: translate(-50%, -50%)
+     -ms-transform: translate(-50%, -50%)
+     -o-transform: translate(-50%, -50%)
+     transform: translate(-50%, -50%);
+}
+
 /*
 cornflowerblue
 dimgrey

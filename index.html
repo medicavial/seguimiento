@@ -27,7 +27,8 @@
     <!--jsgrid css-->
     <link href="template/js/plugins/jsgrid/css/jsgrid.min.css" type="text/css" rel="stylesheet" media="screen,projection">
     <link href="template/js/plugins/jsgrid/css/jsgrid-theme.min.css" type="text/css" rel="stylesheet" media="screen,projection">
-
+    <link href="lib/reloj/css/materialize.clockpicker.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="template/js/plugins/dropify/css/dropify.min.css" type="text/css" rel="stylesheet" media="screen,projection">
    
   <!--[if lt IE 9]>
       <script>
@@ -113,6 +114,7 @@
             <!-- START LEFT SIDEBAR NAV-->
 
             <aside class="left-sidebar-nav"   ng-show="username">
+                <a href=""  data-activates="slide-out" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only cyan"><i class="mdi-navigation-menu"></i></a>
                 <ul id="slide-out"  class="side-nav fixed leftside-navigation">
                 <li class="user-details cyan darken-2">
                 <div class="row">
@@ -389,7 +391,7 @@
                     </div>
                 </li> -->
             </ul>
-                <a href=""  data-activates="slide-out" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only cyan"><i class="mdi-navigation-menu"></i></a>
+               
             </aside>
             <!-- END LEFT SIDEBAR NAV-->
 
@@ -397,27 +399,34 @@
 
             <!-- START CONTENT -->
             <section id="content">
-
               <div id="content-wrapper">
                 <div class="page-content">
-
-                <div  ng-class="{'main':username,'':!username}" >
-                  <div class="contenedor" >
-                    <div ng-view class="paginas"></div> 
-                     <div id="loader-wrapper" ng-show="cerrar=false">
-                        <div id="loader"></div>        
-                        <div class="loader-section section-left"></div>
-                        <div class="loader-section section-right"></div>
-                    </div> 
-                  </div>
-                </div>  
-
+                    <div  ng-class="{'main':username,'':!username}" >
+                      <div class="contenedor" style="min-height: 40em;" >
+                        <div ng-view class="paginas" ng-hide="cargadorInicio"></div> 
+                        <div ng-show="cargadorInicio" >
+                            <div class="row valign-wrapper center-align" style="padding-top: 17em"  >
+                            <div class="col s12 ">
+                                 <div class="loader-section section-left"></div>
+                                 <div class="loader-section section-right"></div>
+                                <img src="imgs/cargadores/abriendo.gif">
+                                
+                            </div>        
+                          </div>        
+                            <div class="loader-section section-left"></div>
+                            <div class="loader-section section-right"></div>
+                        </div>
+                         <!-- <div class="row valign-wrapper center-align" style="padding-top: 17em"  ng-show="cargadorInicio">
+                            <div class="col s12 ">
+                                <img src="imgs/cargador1.gif">
+                            </div>        
+                          </div> -->
+                      </div>
+                    </div>  
                   <!-- End Main Content -->
                 </div><!-- End Page Content -->
-              </div><!-- End Content Wrapper -->
-
-                
-                <!--end container-->
+              </div><!-- End Content Wrapper -->                
+            <!--end container-->
             </section>
             <!-- END CONTENT -->
 
@@ -485,6 +494,7 @@
     <!-- data-tables -->
     <script type="text/javascript" src="template/js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="template/js/plugins/data-tables/data-tables-script.js"></script>
+    <script type="text/javascript" src="template/js/plugins/dropify/js/dropify.min.js"></script>
 
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <!-- <script type="text/javascript" src="template/js/plugins.js"></script> -->
@@ -510,13 +520,16 @@
    
      <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="template/js/plugins.js"></script>
-    <script type="text/javascript" src="template/js/plugins/chartist-js/chartist.min.js"></script>   
+    
     <!--custom-script.js - Add your own theme custom JS-->
     <script type="text/javascript" src="template/js/custom-script.js"></script>
+
+    <script type="text/javascript" src="lib/reloj/js/materialize.clockpicker.js"></script>
    
     <!-- Toast Notification -->
     <script src="lib/angular.min.js"></script> 
     <script type="text/javascript" src="lib/angular-materialize.min.js"></script> 
+    <script type="text/javascript" src="template/js/plugins/chartist-js/chartist.min.js"></script>   
     <script src="modules/angular-file-upload-shim.min.js" ></script>    
     
     
@@ -536,5 +549,7 @@
     <script src="app/controllers/areaOportunidadesCtrl.js"></script>
     <script src="app/controllers/registroOportunidadesCtrl.js"></script>
     <script src="app/services/busquedas.js"></script>
+    <script src="app/services/procesos.js"></script>
+    <script src="app/directives/subirDocumentosService.js"></script>
 </body>
 </html>

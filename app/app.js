@@ -28,19 +28,39 @@ app.config(function($routeProvider){
 
     $routeProvider.when('/login',{
             templateUrl: 'views/login.html',
-            controller : 'loginCtrl'
+            controller : 'loginCtrl',
+            resolve : {
+
+                datos : function(busquedas,$q, $rootScope){
+                    $rootScope.cargadorInicio =true;
+                    var promesa         = $q.defer(),
+                        unidad          = busquedas.buscaUnidades();
+                       
+                    $q.all([unidad]).then(function (data){
+                        promesa.resolve(data);
+                        $rootScope.cargadorInicio =false;
+                    },function (error){
+                        promesa.reject('Error');
+                    });
+
+                    return promesa.promise;
+                }
+            }
     });
     $routeProvider.when('/autorizaciones',{
             templateUrl: 'views/autorizaciones.html',
             controller : 'autorizacionesCtrl',
             resolve : {
-                datos : function(busquedas,$q){
+
+                datos : function(busquedas,$q, $rootScope){
+                    $rootScope.cargadorInicio =true;
                     var promesa         = $q.defer(),
                         unidad          = busquedas.buscaUnidades(),
                         autMV           = busquedas.buscaAutMV(hoy,hoy),
                         autZima         = busquedas.buscaAutZima();
                     $q.all([unidad,autMV,autZima]).then(function (data){
                         promesa.resolve(data);
+                        $rootScope.cargadorInicio =false;
                     },function (error){
                         promesa.reject('Error');
                     });
@@ -86,7 +106,7 @@ app.config(function($routeProvider){
 
 });
 
-app.constant('api','http://localhost/apiseg/public/api/')
+app.constant('api','http://172.17.10.58/apiseg/public/api/')
 
 
 //sirve para ejecutar cualquier cosa cuando inicia la aplicacion
@@ -97,6 +117,7 @@ app.run(function ($rootScope ,$cookies, $cookieStore, sesion, $location){
     $rootScope.admin = true;
     $rootScope.cerrar = false;
     $rootScope.ruta = 'home';
+    $rootScope.cargadorInicio =true;
 
 
     //verifica el tamaño de la pantalle y oculta o muestra el menu

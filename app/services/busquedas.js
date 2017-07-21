@@ -25,7 +25,9 @@ app.factory("busquedas", function($http, $rootScope, api){
         },
         buscaAutZima:function(){
             return $http.get(api+'busqueda/busquedaAutZima');
-
+        },
+        buscaDetalleAutorizacion:function(aut, tipo){
+            return $http.get(api+'busqueda/buscaDetalleAutorizacion/'+aut+'/'+tipo);
         }
     }
 });

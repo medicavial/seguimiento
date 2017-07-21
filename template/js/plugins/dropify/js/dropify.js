@@ -32,10 +32,10 @@ function Dropify(element, options) {
         defaultFile: '',
         maxFileSize: 0,
         messages: {
-            'default': 'Drag and drop a file here or click',
-            'replace': 'Drag and drop or click to replace',
-            'remove':  'Remove',
-            'error':   'Sorry, this file is too large'
+            'default': 'Arrastre y suelte un archivo aquí o haga clic en',
+            'replace': 'Arrastre y suelte o haga clic para reemplazar',
+            'borrar':  'Borrar',
+            'error':   'Tamaño de archivo grande'
         },
         tpl: {
             wrap:        '<div class="dropify-wrapper"></div>',
