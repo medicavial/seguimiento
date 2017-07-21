@@ -1,132 +1,140 @@
 <div ng-init="inicio()" class="container">
    <!--start container-->
       <div class="container">
+        <div class="progress" ng-show="carga">
+          <div class="indeterminate"></div>
+        </div><br>
+          <div  class="row">
             <div class="titulos">
-                <a href="#/" class="icon-arrow-left"></a>
-                <h1>Seguimiento de Oportunidades</h1>
-            </div>
 
-            <form class="col s12">
+                <div class="col s4">
+                   <i class="mdi-action-account-child large circle"></i>
+                </div>
+                <div class="col s8">
+                  <a href="#/" class="icon-arrow-left"></a>
+                  <h1>Seguimiento de Oportunidades</h1>
+                </div>
+            </div>
+          </div>
+
+            <form class="col s12" name="formbuscar">
               <div class="row">
                 <div class="input-field col s6">
                    <input type="date" ng-model="buscar.fechaini" class="datepicker">
-                    <label for="last_name">Fecha Inicio A.O</label>
+                    <label for="last_name">Fecha Inicio</label>
                 </div>
                 <div class="input-field col s6">
                    <input type="date" ng-model="buscar.fechafin"  class="datepicker">
-                   <label for="last_name">Fecha Fin A.O</label>
+                   <label for="last_name">Fecha Fin</label>
                 </div>
               </div>
               <div class="row">
-                <div class="input-field col s4">
-                  <select ng-model="buscar.cliente">
-                    <option value="" selected>Cliente</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                  </select>
-                </div>
 
-                <div class="input-field col s8">
-                  <select ng-model="buscar.unidad">
-                    <option value="" selected>Unidad</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                  </select>
-                </div>
+                <div class="input-field col s6">
+                    <select ng-model="buscar.unidad" material-select watch required>
+                      <option value='' disabled>-- Selecciona Unidad ---</option>
+                      <option ng-repeat="unidad in unidades" value="{{ unidad.id }}">{{unidad.nombre}}</option>
+
+                    </select>
+                </div> 
+              
               </div>
               <div class="row">
-                  <div class="input-field col s8">
-                    <input id="last_name" type="text" class="validate">
-                    <label for="last_name">Lesionado</label>
-                  </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s4">
-                  <div class="switch">
-                    <label>
-                      ¿Se Notifica?
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                    
-                    </label>
-                  </div>
-                </div>
-                <div class="input-field col s4">
-                  <select>
-                    <option value="" selected>Estatus</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                  </select>
+
+                <div class="col s4">
+
+                  <button class="btn waves-effect waves-light" type="submit" name="action" ng-click="buscaOportunidades()" ng-disabled="formbuscar.$invalid">Buscar
+                    <i class="material-icons right">search</i>
+                  </button>
                 </div>
 
                 <div class="col s4">
 
-                  <button class="btn waves-effect waves-light" type="submit" name="action" ng-click="buscaOportunidades()" ng-disabled="myform.$invalid">Buscar
-                    <i class="material-icons right">search</i>
+                  <button class="btn waves-effect waves-light cyan darken-2" type="submit" name="action" ng-click="limpiar()">Limpiar
+                    <i class="material-icons right">delete</i>
                   </button>
                 </div>
               </div>
 
-            </form>   
+            </form> <br><br>  
     <div class="row">
 
-<!--           <table class="responsive-table" >
-              <thead>
-                <tr>
-                    <th>Status</th>
-                    <th>Cliente</th>
-                    <th>Unida</th>
-                    <th>Folio MV</th>
-                    <th>Lesionado</th>
-                    <th>Fecha A.O</th>
-                    <th>Medio</th>
-                    <th>Grado</th>
-                    <th>Tipo</th>
-                    <th>RS</th>
-                    <th>Folio A.O</th>
-                    <th>Se Notifica</th>
-                </tr>
-              </thead> -->
-
-<!--               <tbody>
-                <tr>
-                    <td>Abierta</td>
-                    <td>AXA</td>
-                    <td>MV PERISUR</td>
-                    <td>PEMV042411</td>
-                    <td>HECTOOR ZUÑIGA</td>
-                    <td>02/05/2017</td>
-                    <td>CORREO</td>
-                    <td>7</td>
-                    <td>ADMINISTRATIVO</td>
-                    <td>REAL</td>
-                    <td>AXAO1701001</td>
-                    <td>SI</td>
-                </tr>
-              </tbody>
-            </table>
-
-    </div> 
-    <div id="jsGrid"></div>
-
-      <div class="fixed-action-btn">
-         <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">+</i></a>
-
-      </div>
-                     
-
-
-                    
-
-                    <!-- Floating Action Button -->
-      <div id="jsGrid"></div>
-      </div>
+        <div class="col s12 m12 l12" id="tabla">
+          <div id="grid" ng-jsgrid="gridConfig"></div>
+        </div>   
+    </div>
 
 </div><br><br><br><br><br><br><br><br><br>
+  <div id="modal-bottom-sheet">
+    <div class="row">
+      <div class="col s12 m4 l3">
+        &nbsp;
+      </div>
+      <div class="col s12 m8 l9">
+        <div id="modal5" class="modal bottom-sheet">
+          <div class="modal-content">
+            <h4> Detalle de Seguimiento de Oportunidad </h4>
+            <ul class="collection">
+              <div class="row">
+                  <form class="col s12">
+                    <div class="row">
+                      <div class="input-field col s8">
+                          <h5>Folio A.O <strong class="">{{ folioOP }}</strong></h5>
+                          
+                      </div>
+                      <div class="input-field col s4">
+
+                        <button class="btn waves-effect waves-light" type="submit" name="action" ng-click="cerrarAP()">Cerrar Area O.
+                          <i class="material-icons right"></i>
+                        </button>
+
+                      </div>
+                    </div>
+                   
+                  </form><br><br><br>  
+              </div>
+                  <div class="row">
+                    <div class="col s12">
+                      <table class="hoverable">
+                        <thead>
+                          <tr>
+                            <th data-field="id">Fecha</th>
+                            <th data-field="name">Usuario</th>
+                            <th data-field="price">Tipo</th>
+                            <th data-field="price">Nota</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="detalle in detalles">
+                            <td>{{ detalle.fechaReporte }}</td>
+                            <td>{{ detalle.usuario }}</td>
+                            <td>{{ detalle.tipo }}</td>
+                            <td>{{ detalle.notas }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>  
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <script type="text/javascript">
-
-
+     $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year
+        format: 'yyyy/mm/dd'    
+      });     
 </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+      //$('select').material_select();
+      setTimeout(function () {
+        $('select').material_select();
+    }, 100);
+    });
+  
+</script>
+

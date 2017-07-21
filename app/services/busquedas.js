@@ -26,6 +26,26 @@ app.factory("busquedas", function($http, $rootScope, api){
         buscaAutZima:function(){
             return $http.get(api+'busqueda/busquedaAutZima');
 
+        },
+        listadoOportunidades:function(){
+            return $http.get(api+'busqueda/listadoOportunidades');
+
+        },
+        buscaOportunidades:function(datos){
+
+            return $http.post(api+'busqueda/buscaOportunidades', datos);
+
+        },
+        detalleOportunidad:function(folio){
+
+            return $http.post(api+'busqueda/detalleOportunidad/'+folio);
+
+        },
+        cerrarAP:function(folio){
+
+            return $http.post(api+'busqueda/cerrarAP/'+folio);
+
         }
+
     }
 });

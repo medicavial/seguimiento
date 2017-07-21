@@ -52,7 +52,7 @@ app.controller('registroOportunidadesCtrl', function($scope, $rootScope, busqued
             usuario : $rootScope.usulogin
 
         }
-        console.log($rootScope.usulogin);
+
 		 
     }   
 
@@ -67,6 +67,7 @@ app.controller('registroOportunidadesCtrl', function($scope, $rootScope, busqued
                       $('.tooltipped').tooltip({delay: 50});
                      });
                     $scope.spinner = false;
+                    // swal("Bien!", "Registro Guardado!", "success");
 
                     $scope.datos = {
 
